@@ -1,0 +1,9 @@
+                MODELS
+
+Rescue                          Dog
+has_many :dogs                 belongs_to :rescue
+
+name:string                    name:string 
+location:string                description:string
+                               img_url:string 
+                               rescue_id:integer                  
