@@ -6,7 +6,6 @@ class CreateDogs < ActiveRecord::Migration[6.1]
       t.string :description
       t.string :img_url
 
-      t.timestamps
     end
   end
 end
