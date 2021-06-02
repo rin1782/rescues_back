@@ -15,23 +15,11 @@ class Api::V1::DogsController < ApplicationController
     def create
         @dog = @rescue.dogs.new(dog_params)
         if @dog.save
-            render json: @dog
+            render json: @rescue
         else
             render json: {error: "Dog info not Valid"}
         end
     end
-
-    # def create
-    #     @transaction = @account.transactions.new(transaction_params)
-    #     if @account.update_balance(@transaction) != 'Balance too low.'
-    #       @transaction.save
-    #       render json: @transaction
-    #     else
-    #       render json: {error: 'Balance too low'}
-    #     end
-    #   end
-
-
 
     def update
         if @dog.update(dog_params)
@@ -42,8 +30,10 @@ class Api::V1::DogsController < ApplicationController
     end
 
     def destroy
-        @dog = Dog.find(params[:id])
+        @dog = Dog.find(params["id"])
+        @rescue = Rescue.find(@dog.rescue_id)
         @dog.destroy
+        render json: @rescue
     end
 
     private
